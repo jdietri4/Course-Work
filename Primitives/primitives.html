@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+
+<p> </p>
+<button id = "Button1">Make X Dimensions Larger</button>
+<button id = "Button2">Make X Dimensions Smaller</button>
+<button id = "Button3">Make Y Dimensions Larger</button>
+
+<p> </p>
+<button id = "Button4">Make Y Dimensions Larger</button>
+<button id = "Button5">Create Large Viewing Volume</button>
+<button id = "Button6">Create Smaller Viewing Volume</button>
+<p> </p>
+<script id="vertex-shader" type="x-shader/x-vertex">
+
+attribute  vec4 vPosition;
+attribute  vec4 vColor;
+varying vec4 fColor;
+
+uniform mat4 modelViewMatrix;
+uniform mat4 projectionMatrix;
+
+void main() 
+{
+    gl_Position = projectionMatrix*modelViewMatrix*vPosition;
+    fColor = vColor;
+} 
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+
+precision mediump float;
+
+varying vec4 fColor;
+
+void
+main()
+{
+    gl_FragColor = fColor;
+}
+</script>
+
+<script type="text/javascript" src="Common/webgl-utils.js"></script>
+<script type="text/javascript" src="Common/initShaders.js"></script>
+<script type="text/javascript" src="Common/MV.js"></script>
+<script type="text/javascript" src="primitives.js"></script>
+
+<body>
+<canvas id="gl-canvas" width="512" height="512">
+Oops ... your browser doesn't support the HTML5 canvas element
+</canvas>
+
+</body>
+</html>
